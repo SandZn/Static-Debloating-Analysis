@@ -122,7 +122,7 @@ While *paper[2]* overwrites the executable binary as well as shared libraries fi
 
 1. **correctness:** *paper[1]* uses the piece-wise complied musl-libc and test coreutils to evaluate correctness and performance. All of the programs (109 in total) in coreutils passed the coreutils test suite that is packaged with coreutils source code without errors. *paper[2]* runs several real-world programs (like firefox, vlc...) against large workload and doesn't observe any failures. After reading some papers about debloating software, I find the common correctness experiments for debloating is to 1) debloat some famous software using the approach introduced by the paper; 2) run the target software's test cases and real-world workload, if the testing is passed without errors, the correctness of the debloating approach is proved.
 
-2. **code size of reduction: ** The two approaches can debloat COTS binaries successfully. They both pick `vlc` as one of their target software, and evaluate the reduction for libc. *paper[1]* gets 82% of reductions while *paper[2]* only gets 13.88%. I think the reason is that *paper[1]*'s code analysis is based on LLVM IR instruction while *paper[2]* is based on binary, and LLVM IR is much closer to sourse code and has more detailed information can be used for call graph construction.
+2. **code size of reduction:  ** The two approaches can debloat COTS binaries successfully. They both pick `vlc` as one of their target software, and evaluate the reduction for libc. *paper[1]* gets 82% of reductions while *paper[2]* only gets 13.88%. I think the reason is that *paper[1]*'s code analysis is based on LLVM IR instruction while *paper[2]* is based on binary, and LLVM IR is much closer to sourse code and has more detailed information can be used for call graph construction.
 
 ## Section 2
 
@@ -148,7 +148,7 @@ JavaScript has a large quantity of implicit and overloaded behavior. When it is 
 
 Traditional optimizations applied to most languages are semantics-preserved. *paper[3]* lists eight types of semantics-preserving transformations, these are: i) Assignment Conversion, ii) Constant Propagation, iii) Constant Folding, iv) Dead Code Elimination, v) Non-constant Propagation, vi) Assertion Elimination, vii) Function Inlining, viii) Environment Cleaning. After measuring shrinkage and examining these transformations' effectiveness using ECMAScript test suite (ECMAScript test262) on both test suite and real-world libraries, the figures show that semantics-preserving transformations have a large impact on environment code (38.2% of test suite and 20% of libraries), while just a little impact on user code (9.6% of test suite and 6.8% of libraries). However, it is user code that reﬂects the original JavaScript program rather than environment code, we should concern more about user code. In terms of user code, *paper[3]* proposes a more aggressive method.
 
-#### 2.2.2 semantics-altering debloating
+#### 2.2.2 Semantics-altering debloating
 
 *paper[3]* describes five semantics-altering transformations. It purposefully simplifies the semantics of JavaScript by weakening particular language features. After that, the complex JavaScript semantic becomes simpler, as a result, the corresponding λS5 code debloated. It is useful for practical purpose of managing λS5 more easily, and showcasing the great cost of some rich JavaScript features. These transformations are: 
 
